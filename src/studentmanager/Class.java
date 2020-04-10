@@ -6,42 +6,46 @@
  * Purpose: To add and remove students 
  */
 package studentmanager;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 
 public class Class {
     
-    LinkedList<String> studentList = new LinkedList<String>(); // Creates a linked list
-    
-    
+    ArrayList studentList = new ArrayList(); // Creates an arrayList
     
     // @param newName This is the name input by the user
     // @return output Returns the four key aspect of the student object
-    public String[] findStudent(String newName){
-        String[] output = {}; // Intializes the output string list
+    public LinkedList findStudent(String newName){
+        LinkedList output = new LinkedList(); // Intializes the output string list
         String name;
-        String year;
-        String grade;
+        int year;
+        int grade;
         String major;
         
         for(int i = 0; i < studentList.size(); i++){ // Finds the student, stores, and returns the object's data 
-            if (studentList[i][1] == newName){
+            if (studentList.get(i).getName() == newName){
                 
                 name = newName;
-                year = Integer.toString(studentList[i][2]);
-                grade = Integer.toString(studentList[i][3]);
-                major = studentList[i][4];
+                year =  studentList.get(i).getYear();
+                grade = studentList.get(i).getGrade();
+                major = studentList.get(i).getMajor();
                 
-                output = {name, year, grade, major};
+                output = new LinkedList();
+                output.add(name);
+                output.add(year);
+                output.add(grade);
+                output.add(major);
                 return output;
             }
         }
         
 
-        output = {"error", "error", "error", "error"};
+        output.add("null");
+        output.add(0);
+        output.add(0);
+        output.add("null");
         return output;
-
-        
     }
     
     // @param newName This is the name input by the user
@@ -49,24 +53,17 @@ public class Class {
     // @param newGrade This is the grade input by the user
     // @param newMajor This is the major input by the user
     public void addStudent(String newName, int newYear, int newGrade, String newMajor){
-        String name = newName;
-        int year = newYear;
-        int grade = newGrade;
-        String major = newMajor;
         
-        
-        StudentManager student = new StudentManager(name, year, grade, major); // Creates object
+        studentClass student = new studentClass(newName, newYear, newGrade, newMajor); // Creates object
         
         studentList.add(student); // adds object to the list
     }
     
     // @param name This is the name input by the user
     public void removeStudent(String name){
-        int index;
         for(int i = 0; i < studentList.size(); i++){ // Finds the index and then removes that object
-            if (studentList[i][1] == name){
-                index = studentList[i];
-                studentList.remove(index);
+            if (studentList.get(i).getName() == name){
+                studentList.remove(i);
             }
         }
     }
