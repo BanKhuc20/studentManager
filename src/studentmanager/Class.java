@@ -23,13 +23,14 @@ public class Class {
         int grade;
         String major;
         
-        for(int i = 0; i < studentList.size(); i++){ // Finds the student, stores, and returns the object's data 
-            if (studentList.get(i).getName() == newName){
+        for(int i = 0; i < studentList.size(); i++){ // Finds the student, stores, and returns the object's data
+            studentClass test = (studentClass) studentList.get(i);
+            if (test.getStudentName() == null ? newName == null : test.getStudentName().equals(newName)){
                 
                 name = newName;
-                year =  studentList.get(i).getYear();
-                grade = studentList.get(i).getGrade();
-                major = studentList.get(i).getMajor();
+                year =  test.getStudentYear();
+                grade = test.getStudentGrade();
+                major = test.getStudentMajor();
                 
                 output = new LinkedList();
                 output.add(name);
@@ -62,7 +63,8 @@ public class Class {
     // @param name This is the name input by the user
     public void removeStudent(String name){
         for(int i = 0; i < studentList.size(); i++){ // Finds the index and then removes that object
-            if (studentList.get(i).getName() == name){
+            studentClass test = (studentClass) studentList.get(i);
+            if (test.getStudentName() == null ? name == null : test.getStudentName().equals(name)){
                 studentList.remove(i);
             }
         }
