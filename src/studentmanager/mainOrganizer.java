@@ -5,11 +5,15 @@
  */
 package studentmanager;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author vorpa
  */
 public class mainOrganizer extends javax.swing.JFrame {
+
+    private Class studentManager = new Class();
 
     /**
      * Creates new form mainOrganizer
@@ -36,7 +40,10 @@ public class mainOrganizer extends javax.swing.JFrame {
         addStudent = new javax.swing.JButton();
         removeName = new javax.swing.JButton();
         studentHeading = new javax.swing.JLabel();
-        infoDisplay = new javax.swing.JLabel();
+        infoName = new javax.swing.JLabel();
+        infoYear = new javax.swing.JLabel();
+        infoGrade = new javax.swing.JLabel();
+        infoMajor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +56,12 @@ public class mainOrganizer extends javax.swing.JFrame {
             }
         });
 
-        gradeField.setText("Class");
+        gradeField.setText("Grade");
+        gradeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradeFieldActionPerformed(evt);
+            }
+        });
 
         majorField.setText("Major");
 
@@ -78,7 +90,13 @@ public class mainOrganizer extends javax.swing.JFrame {
 
         studentHeading.setText("Student Information:");
 
-        infoDisplay.setText("null");
+        infoName.setText("Name: ");
+
+        infoYear.setText("Year: ");
+
+        infoGrade.setText("Grade:");
+
+        infoMajor.setText("Major:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,14 +119,20 @@ public class mainOrganizer extends javax.swing.JFrame {
                         .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(findButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(removeName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addStudent))
                             .addComponent(studentHeading)
-                            .addComponent(infoDisplay))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(findButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(removeName))
+                                    .addComponent(infoName)
+                                    .addComponent(infoYear))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(infoMajor)
+                                    .addComponent(infoGrade)
+                                    .addComponent(addStudent))))
                         .addGap(0, 6, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -130,7 +154,13 @@ public class mainOrganizer extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(studentHeading)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoDisplay)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(infoName)
+                    .addComponent(infoGrade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(infoYear)
+                    .addComponent(infoMajor))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -142,16 +172,32 @@ public class mainOrganizer extends javax.swing.JFrame {
     }//GEN-LAST:event_yearFieldActionPerformed
 
     private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
-        // TODO add your handling code here:
+        ArrayList result = studentManager.findStudent(nameField.getText());
+        if(result.get(0) != "null")
+        {
+            infoName.setText("Name: " + result.get(0));
+            infoYear.setText("Year: " + result.get(1));
+            infoGrade.setText("Grade: " + result.get(2));
+            infoMajor.setText("Major: " + result.get(3));
+        }
     }//GEN-LAST:event_findButtonActionPerformed
 
     private void removeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeNameActionPerformed
-        // TODO add your handling code here:
+        studentManager.removeStudent(nameField.getText());
     }//GEN-LAST:event_removeNameActionPerformed
 
     private void addStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentActionPerformed
-        // TODO add your handling code here:
+        String name = nameField.getText();
+        int year = Integer.parseInt(yearField.getText());
+        int grade = Integer.parseInt(gradeField.getText());
+        String major = majorField.getText();
+        System.out.print(name + year + grade + major);
+        studentManager.addStudent(name, year, grade, major);
     }//GEN-LAST:event_addStudentActionPerformed
+
+    private void gradeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gradeFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,6 +227,9 @@ public class mainOrganizer extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+        Class studentManager = new Class();
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new mainOrganizer().setVisible(true);
@@ -193,7 +242,10 @@ public class mainOrganizer extends javax.swing.JFrame {
     private javax.swing.JButton addStudent;
     private javax.swing.JButton findButton;
     private javax.swing.JTextField gradeField;
-    private javax.swing.JLabel infoDisplay;
+    private javax.swing.JLabel infoGrade;
+    private javax.swing.JLabel infoMajor;
+    private javax.swing.JLabel infoName;
+    private javax.swing.JLabel infoYear;
     private javax.swing.JTextField majorField;
     private javax.swing.JTextField nameField;
     private javax.swing.JButton removeName;

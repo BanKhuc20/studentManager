@@ -42,15 +42,24 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="findButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="removeName" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="addStudent" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="studentHeading" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="infoDisplay" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="findButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="removeName" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="infoName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="infoYear" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="infoMajor" min="-2" max="-2" attributes="0"/>
+                                  <Component id="infoGrade" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addStudent" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                   </Group>
@@ -79,7 +88,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="studentHeading" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="infoDisplay" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="infoName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="infoGrade" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="infoYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="infoMajor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -101,8 +118,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="gradeField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Class"/>
+        <Property name="text" type="java.lang.String" value="Grade"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gradeFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="majorField">
       <Properties>
@@ -143,9 +163,24 @@
         <Property name="text" type="java.lang.String" value="Student Information:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="infoDisplay">
+    <Component class="javax.swing.JLabel" name="infoName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="null"/>
+        <Property name="text" type="java.lang.String" value="Name: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="infoYear">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Year: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="infoGrade">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Grade:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="infoMajor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Major:"/>
       </Properties>
     </Component>
   </SubComponents>
