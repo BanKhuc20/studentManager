@@ -7,7 +7,6 @@
  */
 package studentmanager;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 
 public class Class {
@@ -16,8 +15,8 @@ public class Class {
     
     // @param newName This is the name input by the user
     // @return output Returns the four key aspect of the student object
-    public LinkedList findStudent(String newName){
-        LinkedList output = new LinkedList(); // Intializes the output string list
+    public ArrayList findStudent(String newName){
+        ArrayList output = new ArrayList(); // Intializes the output string list
         String name;
         int year;
         int grade;
@@ -32,7 +31,7 @@ public class Class {
                 grade = test.getStudentGrade();
                 major = test.getStudentMajor();
                 
-                output = new LinkedList();
+                output = new ArrayList();
                 output.add(name);
                 output.add(year);
                 output.add(grade);
